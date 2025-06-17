@@ -21,10 +21,15 @@ const nextConfig = {
         permanent: false,
         has: [
           {
-            type: "host",
-            value: process.env.NEXT_PUBLIC_APP_BASE_HOST,
+            type: "cookie",
+            key: "next-auth.session-token",
           },
         ],
+      },
+      {
+        source: "/home",
+        destination: "/register",
+        permanent: true,
       },
       {
         source: "/view/cm2xiaxzo000d147xszm9q72o",
