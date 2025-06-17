@@ -26,6 +26,11 @@ export default async function DomainMiddleware(req: NextRequest) {
       );
     }
 
+    const appDomain = process.env.DOMAIN;
+    if (appDomain) {
+      return NextResponse.redirect(new URL(`https://${appDomain}`));
+    }
+
     return NextResponse.redirect(
       new URL("https://www.papermark.com/home", req.url),
     );
