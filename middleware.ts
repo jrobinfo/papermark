@@ -21,6 +21,12 @@ function isAnalyticsPath(path: string) {
 
 function isCustomDomain(host: string) {
   const appDomain = process.env.DOMAIN;
+  
+  // Check if this is the main app domain
+  if (appDomain && host === appDomain) {
+    return false;
+  }
+  
   return (
     (process.env.NODE_ENV === "development" &&
       (host?.includes(".local") || host?.includes("papermark.dev"))) ||
@@ -29,7 +35,6 @@ function isCustomDomain(host: string) {
         host?.includes("localhost") ||
         host?.includes("papermark.io") ||
         host?.includes("papermark.com") ||
-        (appDomain && host?.includes(appDomain)) ||
         host?.endsWith(".vercel.app")
       ))
   );
